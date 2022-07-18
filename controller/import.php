@@ -1,12 +1,13 @@
 <?php
 
 
-require('../library/php-excel-reader/excel_reader2.php');
-require('../library/SpreadsheetReader.php');
-require('../database/config.php');
+require '../vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 
-if(isset($_POST['submit'])){
+// if(isset($_POST['submit'])){
 
 
   $mimes = ['application/vnd.ms-excel','text/xls','text/xlsx','application/vnd.oasis.opendocument.spreadsheet'];
@@ -40,7 +41,51 @@ if(isset($_POST['submit'])){
       foreach ($Reader as $Row)
       {
         // $html.="<tr>";
-        $jenis_perangkat = isset($Row[1]) ? $Row[1] : '';
+        switch ($Row[1]) {
+          case 'Laptop':
+            $jenis_perangkat = 1;
+            break;
+          
+          case 'Komputer':
+            $jenis_perangkat = 2;
+            break;
+          
+          case 'Handphone':
+            $jenis_perangkat = 3;
+            break;
+          
+          case 'Hardware':
+            $jenis_perangkat = 4;
+            break;
+          
+          case 'Software':
+            $jenis_perangkat = 5;
+            break;
+          
+          case 'Printer':
+            $jenis_perangkat = 6;
+            break;
+          
+          case 'Kamera':
+            $jenis_perangkat = 7;
+            break;
+          
+          case 'Mouse':
+            $jenis_perangkat = 8;
+            break;
+          
+          case 'Parabola':
+            $jenis_perangkat = 9;
+            break;
+          
+          case 'Kabel':
+            $jenis_perangkat = 10;
+            break;
+  
+          default:
+            $jenis_perangkat = 0;
+            break;
+        }
         $merk = isset($Row[2]) ? $Row[2] : '';
         $type_or_seri = isset($Row[3]) ? $Row[3] : '';
         $sn_perangkat = isset($Row[4]) ? $Row[4] : '';
@@ -89,7 +134,7 @@ if(isset($_POST['submit'])){
   }
 
 
-}
+// }
 
 
 ?>
