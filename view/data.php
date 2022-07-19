@@ -4,7 +4,7 @@ include_once("../database/config.php");
 
 
 $id_barang = $_GET['barang'];
-$query_barangs = mysqli_query($mysqli, "SELECT * FROM jenis_perangkat");
+$query_barangs = mysqli_query($mysqli, "SELECT * FROM jenis_perangkat WHERE id = $id_barang");
 $data_barang = mysqli_fetch_array($query_barangs);
 ?>
 

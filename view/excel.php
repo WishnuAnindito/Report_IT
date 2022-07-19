@@ -15,12 +15,22 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Import Data</title>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Sembunyikan alert validasi kosong
+            $("#kosong").hide();
+        });
+    </script>
 </head>
 <body>
     <form action="excel.php" enctype="multipart/form-data" method="post">
+        <a href="../Format.xlsx">Download Format</a>
+        <br><br>
+
         <input type="file" name="file">
-        <input type="submit" name="preview">
+        <button type="submit" name="preview">Preview</button>
     </form>
     <hr>
     <?php
@@ -49,9 +59,9 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             // ini tujuannya agar ketika import, kita memilih file yang tepat (sesuai yg diupload)
             echo "<input type='hidden' name='namafile' value='" . $nama_file_baru . "'>";
             // Buat sebuah div untuk alert validasi kosong
-            echo "<div id='kosong' style='color: red;margin-bottom: 10px;'>
-          Semua data belum diisi, Ada <span id='jumlah_kosong'></span> data yang belum diisi.
-                </div>";
+        //     echo "<div id='kosong' style='color: red;margin-bottom: 10px;'>
+        //   Semua data belum diisi, Ada <span id='jumlah_kosong'></span> data yang belum diisi.
+        //         </div>";
             echo "<table border='1' cellpadding='5'>
           <tr>
             <th colspan='5' class='text-center'>Preview Data</th>
@@ -91,21 +101,21 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                     $jenis_perangkat = 1;
                 }else if(strcasecmp($row['B'], "PC") == 0){
                     $jenis_perangkat = 2;
-                }else if($row['B'] == "Handphone"){
+                }else if(strcasecmp($row['B'], "Handphone") == 0){
                     $jenis_perangkat = 3;
-                }else if($row['B'] == "Hardware"){
+                }else if(strcasecmp($row['B'], "Hardware") == 0){
                     $jenis_perangkat = 4;
-                }else if($row['B'] == "Software"){
+                }else if(strcasecmp($row['B'], "Software") == 0){
                     $jenis_perangkat = 5;
-                }else if($row['B'] == "Printer"){
+                }else if(strcasecmp($row['B'], "Printer") == 0){
                     $jenis_perangkat = 6;
-                }else if($row['B'] == "Kamera"){
+                }else if(strcasecmp($row['B'], "Kamera") == 0){
                     $jenis_perangkat = 7;
-                }else if($row['B'] == "Mouse"){
+                }else if(strcasecmp($row['B'], "Mouse") == 0){
                     $jenis_perangkat = 8;
-                }else if($row['B'] == "Parabola"){
+                }else if(strcasecmp($row['B'], "Parabola") == 0){
                     $jenis_perangkat = 9;
-                }else if($row['B'] == "Kabel"){
+                }else if(strcasecmp($row['B'], "Kabel") == 0){
                     $jenis_perangkat = 10;
                 }
                 $merk = $row['C']; 
@@ -144,15 +154,32 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                     // $sn_charger_td = (!empty($sn_charger)) ? "" : " style='background: #E07171;'"; 
                     // $perlengkapan_td = (!empty($perlengkapan)) ? "" : " style='background: #E07171;'"; 
                     // Jika salah satu data ada yang kosong
-                    if ($jenis_perangkat_td == "" or $merk == "" or $type_or_seri == "" or $sn_perangkat == "" or $sn_charger == "") {
-                        $kosong++; // Tambah 1 variabel $kosong
-                    }
+                    // if ($jenis_perangkat_td == "" or $merk == "" or $type_or_seri == "" or $sn_perangkat == "" or $sn_charger == "" or $perlengkapan == "" or $spesifikasi == "" or $status_kebutuhan == "" or $user == "" or $department == "" or $serah_terima == "" or $keterangan == "" or $jlm_nb == "" or $jlm_pc == "" or $windows_ori == "" or $no_po == "" or $suplier == "" or $windows_os == "" or $pengguna_sebelumnya == "" or $jabatan == "" or $lokasi == "" or $tahun_pembelian == "") {
+                    //     $kosong++; // Tambah 1 variabel $kosong
+                    // }
                     echo "<tr>";
                     echo "<td>" . $jenis_perangkat . "</td>";
                     echo "<td>" . $merk . "</td>";
                     echo "<td>" . $type_or_seri . "</td>";
                     echo "<td>" . $sn_perangkat . "</td>";
                     echo "<td>" . $sn_charger . "</td>";
+                    echo "<td>" . $perlengkapan . "</td>";
+                    echo "<td>" . $spesifikasi . "</td>";
+                    echo "<td>" . $status_kebutuhan . "</td>";
+                    echo "<td>" . $user . "</td>";
+                    echo "<td>" . $department . "</td>";
+                    echo "<td>" . $serah_terima . "</td>";
+                    echo "<td>" . $keterangan . "</td>";
+                    echo "<td>" . $jlm_nb . "</td>";
+                    echo "<td>" . $jlm_pc . "</td>";
+                    echo "<td>" . $windows_ori . "</td>";
+                    echo "<td>" . $no_po . "</td>";
+                    echo "<td>" . $suplier . "</td>";
+                    echo "<td>" . $windows_os . "</td>";
+                    echo "<td>" . $pengguna_sebelumnya . "</td>";
+                    echo "<td>" . $jabatan . "</td>";
+                    echo "<td>" . $lokasi . "</td>";
+                    echo "<td>" . $tahun_pembelian . "</td>";
                     echo "</tr>";
                 }
                 $numrow++; // Tambah 1 setiap kali looping
@@ -160,7 +187,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
             echo "</table>";
             // Cek apakah variabel kosong lebih dari 0
             // Jika lebih dari 0, berarti ada data yang masih kosong
-            if ($kosong > 0) {
+            // if ($kosong > 0) {
     ?>
                 <script>
                     // $(document).ready(function() {
@@ -170,11 +197,11 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                     // });
                 </script>
      <?php
-            } else { // Jika semua data sudah diisi
+            // } else { // Jika semua data sudah diisi
                 echo "<hr>";
                 // Buat sebuah tombol untuk mengimport data ke database
                 echo "<button type='submit' name='import'>Import</button>";
-            }
+            // }
             echo "</form>";
         } else { // Jika file yang diupload bukan File Excel 2007 (.xlsx)
             // Munculkan pesan validasi
