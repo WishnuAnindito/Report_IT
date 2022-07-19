@@ -112,7 +112,7 @@ $dept_name = [
                 </div>
                 <div class="column-create">
                     <label for="serah_terima" class="description-data description-data--column-create">Serah Terima </label>
-                    <input type="date" class="input" disabled id="serah_terima" name="serah_terima" value="<?= $data_details['serah_terima'] ?>" />
+                    <input type="date" class="input" id="serah_terima" name="serah_terima" value="<?= $data_details['serah_terima'] ?>" />
                 </div>
                 <!-- #2 -->
                 <div class="column-create">

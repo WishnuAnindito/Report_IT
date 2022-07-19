@@ -31,6 +31,10 @@ $counter = 0;
         // echo $data['id'] . $data['nama_perangkat'];
     }
     echo '</ul>';
+    echo '<ul>';
+    echo '<li style="--i:4;"> <a href="view/add.php">Add Data</a> </li>';;
+    echo '<li style="--i:3;"> <a href="view/excel.php">Import Data</a> </li>';
+    echo '</ul>';
     ?>
 </body>
 

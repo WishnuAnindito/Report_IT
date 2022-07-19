@@ -4,7 +4,7 @@ include_once("../database/config.php");
 // $id = $_GET['barang'];
 // $query_perangkat =  mysqli_query($mysqli, "SELECT * FROM jenis_perangkat WHERE id = $id");
 $query_data_perangkat = mysqli_query($mysqli, "SELECT * FROM jenis_perangkat");
-$data = mysqli_fetch_array($query_data_perangkat);
+// $data = mysqli_fetch_array($query_data_perangkat);
 $query_kebutuhan  =  mysqli_query($mysqli, "SELECT * FROM kebutuhan");
 
 
@@ -30,7 +30,10 @@ $dept_name = [
 <body>
     <main class="moved-list-menu main-content">
         <section class="container">
-            <h1 class="title-page">Add New Data</h1>
+            <h1 class="title-page" style="position:relative">
+                Add New Data 
+                <a href="/reportIT" style="position:absolute; bottom:0; right:0; font-size: medium;">Back</a>
+            </h1>
             <!-- Form -->
             <form class="wrapper-column-create" method="post" action="../controller/create.php">
                 <div class="column-create">
@@ -55,8 +58,8 @@ $dept_name = [
                     <input type="text" class="input" required id="sn_perangkat" name="sn_perangkat" />
                 </div>
                 <div class="column-create">
-                    <label for="sn_charger" class="description-data description-data--column-create">Charger Number<sup class="required">*</sup></label>
-                    <input type="text" class="input" required id="sn_charger" name="sn_charger" />
+                    <label for="sn_charger" class="description-data description-data--column-create">Charger Number</label>
+                    <input type="text" class="input" id="sn_charger" name="sn_charger" />
                 </div>
                 <div class="column-create">
                     <label for="spesifikasi" class="description-data description-data--column-create">Spesifikasi <sup class="required">*</sup></label>

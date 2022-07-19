@@ -26,7 +26,8 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 </head>
 <body>
     <form action="excel.php" enctype="multipart/form-data" method="post">
-        <a href="../Format.xlsx">Download Format</a>
+        <a href="../Format.xlsx">Download Format</a> | 
+        <a href="/reportIT">Back</a>
         <br><br>
 
         <input type="file" name="file">
@@ -124,7 +125,16 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                 $sn_charger = $row['F'];
                 $perlengkapan = $row['G'];
                 $spesifikasi = $row['H'];
-                $status_kebutuhan = $row['I'];
+                $status_kebutuhan_td = $row['I'];
+                if(strcasecmp($row['I'], "Pergantian Barang") == 0){
+                    $status_kebutuhan = 1;
+                }else if(strcasecmp($row['I'], "Perbaikan Barang") == 0){
+                    $status_kebutuhan = 2;
+                }else if(strcasecmp($row['I'], "Kerusakan Barang") == 0){
+                    $status_kebutuhan = 3;
+                }else if(strcasecmp($row['I'], "Permintaan Barang") == 0){
+                    $status_kebutuhan = 4; 
+                }
                 $user = $row['J'];
                 $department = $row['K'];
                 $serah_terima = $row['L'];
@@ -158,7 +168,7 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
                     //     $kosong++; // Tambah 1 variabel $kosong
                     // }
                     echo "<tr>";
-                    echo "<td>" . $jenis_perangkat . "</td>";
+                    echo "<td>" . $jenis_perangkat_td . "</td>";
                     echo "<td>" . $merk . "</td>";
                     echo "<td>" . $type_or_seri . "</td>";
                     echo "<td>" . $sn_perangkat . "</td>";
