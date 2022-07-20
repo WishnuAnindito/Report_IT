@@ -57,8 +57,8 @@ if (isset($_POST['edit'])) {
     $result = mysqli_query($mysqli, $query);
 
     if ($result) {
-        // header("Location:  ../view/data.php?barang=" . $id_barang);
-        header("Location:  ../view/data.php?barang=1");
+        header("Location:  ../view/data.php?barang=" . $id_barang);
+        // header("Location:  ../view/data.php?barang=1");
     } else {
         echo "Aneh";
     }

@@ -90,8 +90,8 @@ $dept_name = [
                 </div> -->
                 <div class="column-create">
                     <label for="status" class="description-data description-data--column-create">Status Kebutuhan</label>
-                    <select name="status" disabled id="status" class="input">
-                        <option value="<?php $data_kebutuhan['id'] ?> " selected disabled><?= $data_kebutuhan['nama_kebutuhan'] ?></option>
+                    <select name="status"  id="status" class="input">
+                        <option value="<?php $data_kebutuhan['id'] ?> " selected ><?= $data_kebutuhan['nama_kebutuhan'] ?></option>
                         <?php while ($kebutuhan = mysqli_fetch_array($query_kebutuhans)) { ?>
                             <option value="<?= $kebutuhan['id'] ?>"><?= $kebutuhan['nama_kebutuhan'] ?></option>
                         <?php } ?>

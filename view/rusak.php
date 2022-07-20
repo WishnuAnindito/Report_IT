@@ -3,9 +3,10 @@
 include_once("../database/config.php");
 
 
-$id_barang = $_GET['barang'];
-$query_barangs = mysqli_query($mysqli, "SELECT * FROM jenis_perangkat WHERE id = $id_barang");
+// $id_barang = $_GET['barang'];
+$query_barangs = mysqli_query($mysqli, "SELECT * FROM jenis_perangkat");
 $data_barang = mysqli_fetch_array($query_barangs);
+$id_barang = $data_barang['id'];
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +35,7 @@ $data_barang = mysqli_fetch_array($query_barangs);
 <body>
     <main class="moved-list-menu main-content">
         <section class="container">
-            <h1 class="title-page"><?= $data_barang['nama_perangkat'] ?> <a href="/reportIT" class="h5 float-end">Back</a></h1>
+            <h1 class="title-page">Perangkat Rusak<a href="/reportIT" class="h5 float-end">Back</a></h1>
             <div class="wrapper-table-attendance wrapper-table-attendance--not-border">
                 <!-- <a href="excel.php" class="btn btn-success">Import Excel</a> -->
                 <table id="reports" width='80%' border=1>
@@ -63,7 +64,7 @@ $data_barang = mysqli_fetch_array($query_barangs);
                             keterangan LIKE '%" . $search . "%')";
                             $data = mysqli_query($mysqli, $query);
                         } else {
-                            $data = mysqli_query($mysqli, "SELECT * FROM details_barang WHERE jenis_perangkat = $id_barang AND NOT status_kebutuhan = 3 ORDER BY id DESC");
+                            $data = mysqli_query($mysqli, "SELECT * FROM details_barang WHERE status_kebutuhan = 3 ORDER BY id DESC");
                         }
 
                         $no = 1;

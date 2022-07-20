@@ -44,7 +44,15 @@ if(isset($_POST['import'])){ // Jika user mengklik tombol Import
     $sn_charger = $row['F'];
     $perlengkapan = $row['G'];
     $spesifikasi = $row['H'];
-    $status_kebutuhan = $row['I'];
+    if(strcasecmp($row['I'], "Pergantian Barang") == 0){
+        $status_kebutuhan = 1;
+    }else if(strcasecmp($row['I'], "Perbaikan Barang") == 0){
+        $status_kebutuhan = 2;
+    }else if(strcasecmp($row['I'], "Kerusakan Barang") == 0){
+        $status_kebutuhan = 3;
+    }else if(strcasecmp($row['I'], "Permintaan Barang") == 0){
+        $status_kebutuhan = 4; 
+    }
     $user = $row['J'];
     $department = $row['K'];
     $serah_terima = $row['L'];
