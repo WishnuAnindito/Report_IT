@@ -19,7 +19,7 @@ if(isset($_POST['import'])){ // Jika user mengklik tombol Import
     $jenis_perangkat_td = $row['B'];
     if(strcasecmp($row['B'], "Laptop") == 0){
         $jenis_perangkat = 1;
-    }else if(strcasecmp($row['B'], "PC") == 0){
+    }else if(strcasecmp($row['B'], "PC") == 0 || strcasecmp($row['B'], "Komputer") == 0){
         $jenis_perangkat = 2;
     }else if(strcasecmp($row['B'], "Handphone") == 0){
         $jenis_perangkat = 3;

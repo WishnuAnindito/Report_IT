@@ -64,23 +64,32 @@ $id_barang = $data_barang['id'];
                             keterangan LIKE '%" . $search . "%')";
                             $data = mysqli_query($mysqli, $query);
                         } else {
-                            $data = mysqli_query($mysqli, "SELECT * FROM details_barang WHERE status_kebutuhan = 3 ORDER BY id DESC");
+                            $query = "SELECT 
+                                        details_barang.jenis_perangkat AS perangkat_id, 
+                                        details_barang.id AS details_id,
+                                        nama_perangkat,
+                                        merk,
+                                        user,
+                                        department,
+                                        keterangan
+                                     FROM details_barang JOIN jenis_perangkat ON details_barang.jenis_perangkat = jenis_perangkat.id WHERE status_kebutuhan = 3 ORDER BY details_barang.id DESC";
+                            $data = mysqli_query($mysqli, $query);
                         }
 
                         $no = 1;
                         while ($barang = mysqli_fetch_array($data)) {
                             echo "<tr>";
                             echo "<td>" . $no++ . "</td>";
-                            echo "<td>" . $data_barang['nama_perangkat'] . "</td>";
+                            echo "<td>" . $barang['nama_perangkat'] . "</td>";
                             echo "<td>" . $barang['merk'] . "</td>";
                             echo "<td>" . $barang['user'] . "</td>";
                             echo "<td>" . $barang['department'] . "</td>";
                             echo "<td>" . $barang['keterangan'] . "</td>";
                             // echo "<td><a href='edit.php?id=$barang[id]'>Edit</a> | <a href='delete.php?id=$barang[id]'>Delete</a></td></tr>";
                             echo "<td class='d-flex flex-row'>
-                                    <a href='show.php?barang=$id_barang&id=$barang[id]' class='btn btn-warning d-flex justify-content-center align-items-center me-1' style='width:30px; height: 30px;'><i class='fa fa-eye' aria-hidden='true'></i></a>
-                                    <a href='edit.php?barang=$id_barang&id=$barang[id]' class='btn btn-success d-flex justify-content-center align-items-center' style='width:30px; height: 30px;'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>
-                                    <a href='../controller/delete.php?barang=$id_barang&id=$barang[id]' class='btn btn-danger d-flex justify-content-center align-items-center ms-1' style='width:30px; height: 30px;'><i class='fa fa-trash-o' aria-hidden='true'></i></a>
+                                    <a href='show.php?barang=$barang[perangkat_id]&id=$barang[details_id]' class='btn btn-warning d-flex justify-content-center align-items-center me-1' style='width:30px; height: 30px;'><i class='fa fa-eye' aria-hidden='true'></i></a>
+                                    <a href='edit.php?barang=$barang[perangkat_id]&id=$barang[details_id]' class='btn btn-success d-flex justify-content-center align-items-center' style='width:30px; height: 30px;'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>
+                                    <a href='../controller/delete.php?barang=$barang[perangkat_id]&id=$barang[details_id]' class='btn btn-danger d-flex justify-content-center align-items-center ms-1' style='width:30px; height: 30px;'><i class='fa fa-trash-o' aria-hidden='true'></i></a>
                                     </td>";
                         }
                         ?>

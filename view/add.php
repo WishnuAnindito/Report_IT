@@ -51,7 +51,7 @@ $dept_name = [
                 </div>
                 <div class="column-create">
                     <label for="type_or_series" class="description-data description-data--column-create">Type/Series <sup class="required">*</sup></label>
-                    <input type="text" class="input" required id="type_or_series" name="type_or_Seri" />
+                    <input type="text" class="input" required id="type_or_series" name="type_or_seri" />
                 </div>
                 <div class="column-create">
                     <label for="sn_perangkat" class="description-data description-data--column-create">Serial Number <sup class="required">*</sup></label>
@@ -101,12 +101,12 @@ $dept_name = [
                     <input type="text" class="input" id="perlengkapan" name="perlengkapan" />
                 </div>
                 <div class="column-create">
-                    <label for="jml_nb" class="description-data description-data--column-create">Jumlah Notebook</label>
-                    <input type="number" class="input" id="jml_nb" name="jml_nb" />
+                    <label for="jlm_nb" class="description-data description-data--column-create">Jumlah Notebook</label>
+                    <input type="number" class="input" id="jlm_nb" name="jlm_nb" />
                 </div>
                 <div class="column-create">
-                    <label for="jml_pc" class="description-data description-data--column-create">Jumlah PC</label>
-                    <input type="number" class="input" id="jml_pc" name="jml_pc" />
+                    <label for="jlm_pc" class="description-data description-data--column-create">Jumlah PC</label>
+                    <input type="number" class="input" id="jlm_pc" name="jlm_pc" />
                 </div>
                 <div class="column-create">
                     <label for="windows_ori" class="description-data description-data--column-create">Windows Original</label>
